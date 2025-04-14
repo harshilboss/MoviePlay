@@ -8,9 +8,10 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/getCommand', (req, res) => {
-    res.send(command);
+    res.json({ command });   // ✅ Proper JSON format for Unity
     command = "";
 });
+
 
 app.post('/sendCommand', (req, res) => {
     command = req.body.command;
