@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Remote Video Control</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 100px; background: #111; color: #fff; }
+    button { margin: 10px; padding: 20px 40px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer; background: #444; color: white; }
+    button:hover { background: #666; }
+  </style>
+</head>
+<body>
+  <h1>🎬 Remote Video Controller</h1>
+  <button onclick="sendCommand('play')">▶️ Play</button>
+  <button onclick="sendCommand('pause')">⏸️ Pause</button>
+  <button onclick="sendCommand('skip')">⏩ Skip 10s</button>
+
+  <script>
+    function sendCommand(cmd) {
+      fetch('https://unity-control.onrender.com/sendCommand', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ command: cmd })
+      }).then(res => console.log("Sent:", cmd));
+    }
+  </script>
+  
+</body>
+</html>
